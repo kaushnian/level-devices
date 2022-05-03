@@ -9,12 +9,10 @@ import { useDrop } from 'react-dnd';
 export default function Column({ name, id, devices, onDrop }) {
   const [_, drop] = useDrop(() => ({
     accept: DndItemTypes.DEVICE,
-    drop: (item, monitor) => dropF(item, monitor),
+    drop: item => {
+      onDrop({ deviceId: item.id, newStatus: id.toUpperCase() });
+    },
   }));
-
-  function dropF(item, monitor) {
-    onDrop({ deviceId: item.id, newStatus: id.toUpperCase() });
-  }
 
   return (
     <Paper
@@ -31,14 +29,8 @@ export default function Column({ name, id, devices, onDrop }) {
         {name}
       </Typography>
       <Box sx={{ flex: 1 }} ref={drop}>
-        {devices.map(({ name, id, lastModified, comment }) => (
-          <DeviceCard
-            key={id}
-            name={name}
-            id={id}
-            lastModified={lastModified}
-            comment={comment}
-          ></DeviceCard>
+        {devices.map(device => (
+          <DeviceCard key={device.id} device={device} />
         ))}
       </Box>
     </Paper>

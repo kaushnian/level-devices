@@ -1,6 +1,8 @@
 import { Typography } from '@mui/material';
 
-export default function DeviceInfo({ name, lastModified, comment }) {
+export default function DeviceInfo({
+  device: { name, lastModified, comment },
+}) {
   return (
     <>
       <Typography variant="body1">{name}</Typography>

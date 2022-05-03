@@ -1,27 +1,18 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  Paper,
-} from '@mui/material';
-
+import DeviceDialog from './DeviceDialog';
 import DeviceInfo from './DeviceInfo';
 import { DndItemTypes } from '../constants';
+import { Paper } from '@mui/material';
 import { useDrag } from 'react-dnd';
 import { useState } from 'react';
 
-export default function DeviceCard({ name, id, lastModified, comment }) {
-  const [{ isDragging }, drag] = useDrag(
-    () => ({
-      type: DndItemTypes.DEVICE,
-      item: { id },
-      collect: monitor => ({
-        isDragging: !!monitor.isDragging(),
-      }),
+export default function DeviceCard({ device }) {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: DndItemTypes.DEVICE,
+    item: { id: device.id },
+    collect: monitor => ({
+      isDragging: !!monitor.isDragging(),
     }),
-    [id]
-  );
+  }));
 
   const [open, setOpen] = useState(false);
 
@@ -33,14 +24,6 @@ export default function DeviceCard({ name, id, lastModified, comment }) {
     setOpen(false);
   }
 
-  const deviceInfo = (
-    <DeviceInfo
-      name={name}
-      lastModified={lastModified}
-      comment={comment}
-    ></DeviceInfo>
-  );
-
   return (
     <>
       <Paper
@@ -48,17 +31,10 @@ export default function DeviceCard({ name, id, lastModified, comment }) {
         ref={drag}
         sx={{ p: 1, mb: 1, opacity: isDragging ? 0.5 : 1, cursor: 'move' }}
       >
-        {deviceInfo}
+        <DeviceInfo device={device} />
       </Paper>
 
-      <Dialog open={open} onClose={closeDialog} fullWidth>
-        <DialogContent>{deviceInfo}</DialogContent>
-        <DialogActions>
-          <Button onClick={closeDialog} autoFocus>
-            OK
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <DeviceDialog open={open} onClose={closeDialog} device={device} />
     </>
   );
 }
