@@ -60,6 +60,5 @@ const DEVICES = [
 ];
 
 export function getDevices() {
-  console.log('getDevices');
   return DEVICES;
 }
