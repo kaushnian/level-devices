@@ -1,19 +1,9 @@
-import { Box, Paper } from '@mui/material';
-
-import DeviceCard from './DeviceCard';
-import { DndItemTypes } from '../constants';
+import DeviceCardList from './DeviceCardList';
+import { Paper } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
-import { useDrop } from 'react-dnd';
 
 export default function Column({ name, id, devices, onDrop }) {
-  const [_, drop] = useDrop(() => ({
-    accept: DndItemTypes.DEVICE,
-    drop: item => {
-      onDrop({ deviceId: item.id, newStatus: id.toUpperCase() });
-    },
-  }));
-
   return (
     <Paper
       sx={{
@@ -28,11 +18,7 @@ export default function Column({ name, id, devices, onDrop }) {
       <Typography variant="h6" sx={{ pl: 1 }}>
         {name}
       </Typography>
-      <Box sx={{ flex: 1 }} ref={drop}>
-        {devices.map(device => (
-          <DeviceCard key={device.id} device={device} />
-        ))}
-      </Box>
+      <DeviceCardList devices={devices} onDrop={onDrop} columnId={id} />
     </Paper>
   );
 }

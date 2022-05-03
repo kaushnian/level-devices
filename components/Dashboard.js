@@ -26,13 +26,13 @@ const COLUMNS = [
 export default function Dashboard() {
   const [devices, setDevices] = useState(() => getDevices());
 
-  function updateDevice({ deviceId, newStatus }) {
+  function updateDevice({ deviceId, columnId }) {
     setDevices(devices =>
       devices.map(device => {
         if (device.id === deviceId) {
           return {
             ...device,
-            status: newStatus,
+            status: columnId.toUpperCase(),
             lastModified: new Date().toISOString(),
             comment: `Previous status: ${device.status}`,
           };
