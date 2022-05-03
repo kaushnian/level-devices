@@ -5,13 +5,17 @@ export default function DeviceCardInfo({
 }) {
   return (
     <>
-      <Typography variant="body1">{name}</Typography>
+      <Typography variant="h6">{name}</Typography>
       {lastModified && (
-        <Typography variant="body2" mt={1}>
+        <Typography variant="body2" mt={1} data-testid="last-modified">
           Last modified: {new Date(lastModified).toLocaleString()}
         </Typography>
       )}
-      {comment && <Typography variant="body2">{comment}</Typography>}
+      {comment && (
+        <Typography variant="body2" data-testid="comment">
+          {comment}
+        </Typography>
+      )}
     </>
   );
 }

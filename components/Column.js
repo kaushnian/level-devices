@@ -16,7 +16,7 @@ export default function Column({ name, id, devices, onDrop, color }) {
         gap: 1,
       }}
     >
-      <Typography variant="h6" sx={{ pl: 1 }}>
+      <Typography variant="h5" sx={{ pl: 1 }}>
         {name}
       </Typography>
       <DeviceCardList devices={devices} onDrop={onDrop} columnId={id} />
