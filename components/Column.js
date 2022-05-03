@@ -1,13 +1,14 @@
+import * as colors from '@mui/material/colors';
+
 import DeviceCardList from './DeviceCardList';
 import { Paper } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { grey } from '@mui/material/colors';
 
-export default function Column({ name, id, devices, onDrop }) {
+export default function Column({ name, id, devices, onDrop, color }) {
   return (
     <Paper
       sx={{
-        background: grey[200],
+        background: colors[color][100],
         p: 1,
         flex: 1,
         display: 'flex',

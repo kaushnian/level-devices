@@ -8,18 +8,22 @@ const COLUMNS = [
   {
     name: 'Requested',
     id: 'requested',
+    color: 'red',
   },
   {
     name: 'Purchased',
     id: 'purchased',
+    color: 'blue',
   },
   {
     name: 'Shipped',
     id: 'shipped',
+    color: 'orange',
   },
   {
     name: 'Installed',
     id: 'installed',
+    color: 'green',
   },
 ];
 
@@ -49,11 +53,12 @@ export default function Dashboard() {
 
   return (
     <Box sx={{ display: 'flex', gap: 2 }}>
-      {COLUMNS.map(({ name, id }) => (
+      {COLUMNS.map(({ name, id, color }) => (
         <Column
           key={id}
           name={name}
           id={id}
+          color={color}
           devices={filterDevices(id)}
           onDrop={updateDevice}
         ></Column>
