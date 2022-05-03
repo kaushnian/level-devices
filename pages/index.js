@@ -1,5 +1,11 @@
 import Dashboard from '../components/Dashboard';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 export default function Home() {
-  return <Dashboard></Dashboard>;
+  return (
+    <DndProvider backend={HTML5Backend}>
+      <Dashboard></Dashboard>
+    </DndProvider>
+  );
 }
