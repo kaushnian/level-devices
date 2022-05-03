@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 
-export default function DeviceInfo({
+export default function DeviceCardInfo({
   device: { name, lastModified, comment },
 }) {
   return (

@@ -1,5 +1,5 @@
+import DeviceCardInfo from './DeviceCardInfo';
 import DeviceDialog from './DeviceDialog';
-import DeviceInfo from './DeviceInfo';
 import { DndItemTypes } from '../constants';
 import { Paper } from '@mui/material';
 import { useDrag } from 'react-dnd';
@@ -31,7 +31,7 @@ export default function DeviceCard({ device }) {
         ref={drag}
         sx={{ p: 1, mb: 1, opacity: isDragging ? 0.5 : 1, cursor: 'move' }}
       >
-        <DeviceInfo device={device} />
+        <DeviceCardInfo device={device} />
       </Paper>
 
       <DeviceDialog open={open} onClose={closeDialog} device={device} />
